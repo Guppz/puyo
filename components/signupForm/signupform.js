@@ -3,11 +3,11 @@ import {StyleSheet,View,TextInput} from 'react-native';
 import { Form,Item ,Input, Button,Text} from 'native-base';
 
 
-class Loginform extends Component {
+class Signupform extends Component {
     state = {  }
 
     swichForm = () =>{
-        this.props.onSignupClick();
+        this.props.onLoginClick();
     }
 
     render() {
@@ -16,7 +16,10 @@ class Loginform extends Component {
                 <View style={styles.inputsView} >
                 <Form>
                     <Item>
-                        <Input placeholder="Username" />
+                        <Input placeholder="Username"/>
+                    </Item>
+                    <Item>
+                        <Input placeholder="Email"/>
                     </Item>
                     <Item>
                         <Input placeholder="Password" secureTextEntry={true}/>
@@ -24,8 +27,8 @@ class Loginform extends Component {
                 </Form>
                 </View>
                 <View style={styles.buttonView} >
-                    <Button block rounded style={styles.button} ><Text>Login</Text></Button>
-                    <Button block rounded style={styles.button} onPress={this.swichForm}><Text>Signup</Text></Button>
+                    <Button block rounded style={styles.button} ><Text>Signup</Text></Button>
+                    <Button block rounded style={styles.button} onPress={this.swichForm} ><Text>Login</Text></Button>
                 </View>
             </View>
         );
@@ -37,7 +40,7 @@ const styles = StyleSheet.create({
     formView:{
       backgroundColor:'white',
       width:"80%",
-      height:"20%",
+      height:"25%",
       borderRadius:10
     },
     inputsView:{
@@ -56,4 +59,4 @@ const styles = StyleSheet.create({
     }
   });
 
-export default Loginform;
+export default Signupform;
