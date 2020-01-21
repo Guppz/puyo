@@ -1,11 +1,19 @@
 import React ,{Component} from 'react';
 import {StyleSheet,View,TextInput} from 'react-native';
 import { Form,Item ,Input, Button,Text} from 'native-base';
+import { fetchUser} from '../../redux/Actions/users/userActions';
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux';
+
 
 
 class Loginform extends Component {
-    state = {  }
-
+    state = {email:"",
+             password:""}
+    login= () => {
+        this.props.fetchUser(this.state.email,this.state.password);
+        console.log(this.props.users)
+    } 
     swichForm = () =>{
         this.props.onSignupClick();
     }
@@ -16,15 +24,15 @@ class Loginform extends Component {
                 <View style={styles.inputsView} >
                 <Form>
                     <Item>
-                        <Input placeholder="Username" />
+                        <Input placeholder="Email" onChangeText={(value) => this.setState({email: value})}/>
                     </Item>
                     <Item>
-                        <Input placeholder="Password" secureTextEntry={true}/>
+                        <Input placeholder="Password" secureTextEntry={true} onChangeText={(value) => this.setState({password: value})} />
                     </Item>
                 </Form>
                 </View>
                 <View style={styles.buttonView} >
-                    <Button block rounded style={styles.button} ><Text>Login</Text></Button>
+                    <Button block rounded style={styles.button} onPress={this.login}><Text>Login</Text></Button>
                     <Button block rounded style={styles.button} onPress={this.swichForm}><Text>Signup</Text></Button>
                 </View>
             </View>
@@ -56,4 +64,14 @@ const styles = StyleSheet.create({
     }
   });
 
-export default Loginform;
+  Loginform.propTypes = {
+    fetchUser: PropTypes.func.isRequired,
+    users: PropTypes.bool.isRequired
+  };
+  
+  const mapStateToProps = state => ({
+    users: state.users.users
+  });
+  
+
+export default connect(mapStateToProps, { fetchUser })(Loginform);
