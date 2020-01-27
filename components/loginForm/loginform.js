@@ -8,11 +8,12 @@ import { connect } from 'react-redux';
 
 
 class Loginform extends Component {
-    state = {email:"",
-             password:""}
+    state = {email:"",password:""}
     login= () => {
-        this.props.fetchUser(this.state.email,this.state.password);
-        console.log(this.props.users)
+        
+        // this.props.fetchUser(this.state.email,this.state.password);
+        // if(this.props.users){
+        this.props.navigation.navigate('Dash');
     } 
     swichForm = () =>{
         this.props.onSignupClick();

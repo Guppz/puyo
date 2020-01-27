@@ -8,8 +8,6 @@
 
 import React ,{Component} from 'react';
 import {SafeAreaView,StyleSheet,View,StatusBar,Image} from 'react-native';
-import { Provider } from 'react-redux';
-import store from '../store';
 import Loginform  from "../components/loginForm/loginform";
 import Signupform  from "../components/signupForm/signupform";
 
@@ -30,18 +28,16 @@ class HomeScreen extends Component {
 
   render() {
     return (
-      <Provider store={ store } >
       <>
       <StatusBar backgroundColor="blue" barStyle="dark-content" />
       <SafeAreaView style={styles.primaryColor}>
       <View style={[styles.primaryColor,styles.primaryView]}>
         <Image style={styles.logo} source={require('../img/logo.png')}/>
-        {this.state.btnLogin && <Loginform onSignupClick={this.onSignupClick}/>}
+        {this.state.btnLogin && <Loginform onSignupClick={this.onSignupClick} navigation={this.props.navigation}/>}
         {this.state.btnSignup && <Signupform onLoginClick={this.onLoginClick} />}
       </View>
       </SafeAreaView>
       </>
-      </Provider>
     );
   }
 }
