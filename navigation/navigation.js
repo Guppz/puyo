@@ -5,25 +5,37 @@ import HomeScreen from '../Screens/HomeScreen'
 import DashScreen from '../Screens/DashScreen'
 import SearchScreen from '../Screens/SearchScreen'
 import ProfileScreen from '../Screens/ProfileScreen'
+import GameScreen from '../Screens/GameScreen'
 
 
-const TabNavigator = createBottomTabNavigator({
+const TabNavigator = createBottomTabNavigator(
+  {
   Dash: DashScreen,
   Search:SearchScreen,
   Profile:ProfileScreen
-});
+  },
+  {
+    tabBarOptions: {
+      style: {
+       height: 30,
+       backgroundColor: '#7289DA'
+      }
+    }
+  }
+);
 
 
 
 const appNavigator = createStackNavigator(
   {
     Home:HomeScreen,
+    Game:GameScreen,
     Tap:TabNavigator,
+
   },
   {
     initialRouteName:'Home',
-    header:null,
-    headerMode:'none'
+    headerMode:"none"
   },
   
 

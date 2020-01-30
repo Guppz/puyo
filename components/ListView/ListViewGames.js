@@ -1,7 +1,8 @@
 import React ,{Component} from 'react';
-import {SafeAreaView,StyleSheet,View,ScrollView} from 'react-native';
+import {SafeAreaView,StyleSheet,View,ScrollView,Text} from 'react-native';
 import { Button ,Spinner} from 'native-base';
 import GameCards from '../Card/GameCard'
+import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 
 
 class ListViewGames extends Component {
@@ -25,24 +26,33 @@ class ListViewGames extends Component {
     .catch((error) =>{
       console.error(error);
     });
-
   }
-  render() {
 
-    if(!this.state.isLoading){
-      var gameItems = this.state.gamesList.map(game => (
-            <GameCards game={game} key={game.id}/>
-      ));
-    }else{
-      gameItems = <Spinner/>
+
+  render() {
+    const renderGridItems = (data) =>{
+      return(
+        <TouchableOpacity style={styles.gridItem} onPress={()=>{
+          this.props.navigation.navigate({
+                                          routeName:'Game',
+                                          params:{
+                                            GameData: data.item
+                                          }});
+        }}>
+        <View>
+          <Text>{data.item.name}</Text>
+        </View>
+        </TouchableOpacity>
+      );
     }
 
     return (
         <SafeAreaView>
-          <ScrollView Style={styles.View}>
-            {gameItems}
-          </ScrollView>
-          </SafeAreaView>
+          <View>
+            {this.state.isLoading && <Spinner color='white'/>}
+            {this.state.isLoading == false && <FlatList keyExtractor={(item,index)=> item.id} data={this.state.gamesList} renderItem={renderGridItems} numColumns={2}></FlatList>}
+          </View>
+        </SafeAreaView>
           
           );
   }
@@ -51,18 +61,12 @@ class ListViewGames extends Component {
 
 
 const styles = StyleSheet.create({
-  primaryColor:{
-    backgroundColor:'#323232'
-  },
-  primaryView:{
-    height:"100%",
-    justifyContent:"center",
-    alignItems:"center",
-  },
-  logo:{
-    marginTop:"-75%",
-    width: "50%", 
-    height:"40%",
+
+  gridItem:{
+    flex:1,
+    margin:15,
+    height:150,
+    width:150
   }
 });
 

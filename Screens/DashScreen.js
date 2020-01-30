@@ -1,6 +1,7 @@
 import React ,{Component} from 'react';
 import {SafeAreaView,StyleSheet,View,StatusBar,Image,Text} from 'react-native';
 import ListViewGames from "../components/ListView/ListViewGames";
+import { Button } from 'native-base';
 
 
 
@@ -8,9 +9,9 @@ class DashScreen extends Component {
   state = {}
   render() {
     return (
-        <SafeAreaView>
-          <View Style={styles.View}>
-            <ListViewGames/>
+        <SafeAreaView style={styles.primaryColor}>
+          <View style={[styles.primaryColor,styles.primaryView]}>
+            <ListViewGames navigation={this.props.navigation}/>
           </View>
           </SafeAreaView>
           
@@ -18,19 +19,13 @@ class DashScreen extends Component {
   }
 }
 
+
 const styles = StyleSheet.create({
   primaryColor:{
     backgroundColor:'#323232'
   },
   primaryView:{
     height:"100%",
-    justifyContent:"center",
-    alignItems:"center",
-  },
-  logo:{
-    marginTop:"-75%",
-    width: "50%", 
-    height:"40%",
   }
 });
 

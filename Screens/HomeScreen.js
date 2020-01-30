@@ -42,6 +42,8 @@ class HomeScreen extends Component {
   }
 }
 
+
+
 const styles = StyleSheet.create({
   primaryColor:{
     backgroundColor:'#323232'
@@ -57,5 +59,6 @@ const styles = StyleSheet.create({
     height:"40%",
   }
 });
+
 
 export default HomeScreen;
