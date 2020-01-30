@@ -26,6 +26,8 @@ const styles = StyleSheet.create({
   },
   primaryView:{
     height:"100%",
+    justifyContent:"center",
+    alignItems:"center"
   }
 });
 

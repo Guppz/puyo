@@ -1,5 +1,5 @@
 import React ,{Component} from 'react';
-import {SafeAreaView,StyleSheet,View,ScrollView,Text} from 'react-native';
+import {SafeAreaView,StyleSheet,View,ScrollView,Text,Image} from 'react-native';
 import { Button ,Spinner} from 'native-base';
 import GameCards from '../Card/GameCard'
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
@@ -40,7 +40,11 @@ class ListViewGames extends Component {
                                           }});
         }}>
         <View>
-          <Text>{data.item.name}</Text>
+        <Image
+          style={styles.Image}
+          source={{uri: data.item.background_image}}
+          />
+          <Text style={styles.text}>{data.item.name}</Text>
         </View>
         </TouchableOpacity>
       );
@@ -65,9 +69,29 @@ const styles = StyleSheet.create({
   gridItem:{
     flex:1,
     margin:15,
-    height:150,
-    width:150
+    height:200,
+    width:150,
+    backgroundColor:"#f95959",
+    borderRadius:10,
+    shadowColor: "white",
+    shadowOffset: {
+	    width: 0,
+	    height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4,
+  },
+  Image:{
+    width: 150,
+    height: 150,
+  },
+  text:{
+    marginTop:10,
+    color:"white",
+    textAlign:"center"
   }
+
 });
 
 export default ListViewGames;

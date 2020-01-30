@@ -61,7 +61,8 @@ const styles = StyleSheet.create({
     },
     button:{
         marginRight:10,
-        width:"49%"
+        width:"49%",
+        backgroundColor:"#f95959"
     }
   });
 
