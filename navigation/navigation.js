@@ -12,7 +12,6 @@ const TabNavigator = createBottomTabNavigator(
   {
   Dash: DashScreen,
   Search:SearchScreen,
-  Profile:ProfileScreen
   },
   {
     tabBarOptions: {

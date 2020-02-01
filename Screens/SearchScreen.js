@@ -8,7 +8,7 @@
 
 import React ,{Component} from 'react';
 import {SafeAreaView,StyleSheet,View,Text} from 'react-native';
-import { Container, Header, Item, Input, Icon} from 'native-base'
+import { Container, Header, Item, Input, Icon,Spinner} from 'native-base'
 import SearchList from '../components/ListView/ListViewSearchGames'
 
 
@@ -19,7 +19,7 @@ class SearchScreen extends Component {
   }
   state = {
     search: '',
-    loading: false,      
+    isLoading: true,      
     data: [],
     extra:[],
   };
@@ -37,7 +37,7 @@ class SearchScreen extends Component {
       this.setState({
         data: newArray,
         extra:newArray,
-        isLoading:true,
+        isLoading:false,
       })
     })
     .catch((error) =>{
@@ -65,14 +65,15 @@ class SearchScreen extends Component {
 
 
     return (
-          <View>
-            <Header searchBar rounded>
+          <View style={[styles.primaryColor,styles.primaryView]}>
+          <Header searchBar rounded  style={styles.primaryColor}>
           <Item>
             <Icon name="ios-search" />
             <Input placeholder="Search" onChangeText={text => searchFilterFunction(text)} />
           </Item>
-        </Header>
-          <SearchList isLoading={this.state.loading} gamesList={this.state.data} navigation={this.props.navigation}/>
+          </Header>
+          {this.state.isLoading && <Spinner color='white' style={styles.spiner}/>}
+          {this.state.isLoading == false && <SearchList isLoading={this.state.isLoading} gamesList={this.state.data} navigation={this.props.navigation}/>}
           </View>
   
           );
@@ -85,12 +86,13 @@ const styles = StyleSheet.create({
   },
   primaryView:{
     height:"100%",
-    justifyContent:"center",
-    alignItems:"center",
   },
   spiner:{
     justifyContent:"center",
     alignItems:"center"
+  },
+  Header:{
+
   }
 });
 

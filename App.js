@@ -14,6 +14,7 @@ import store from './store';
 
 class App extends Component {
   render() {
+    console.disableYellowBox = true;
     return (
       <Provider store={ store } >
         <Navigation/>

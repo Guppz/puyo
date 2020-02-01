@@ -1,7 +1,7 @@
 import React ,{Component} from 'react';
-import {SafeAreaView,StyleSheet,View,ScrollView,Text,Image} from 'react-native';
+import {SafeAreaView,StyleSheet,View,ScrollView,Text,Image, TouchableOpacity} from 'react-native';
 import { Spinner} from 'native-base';
-import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
+import { FlatList } from 'react-native-gesture-handler';
 
 
 class ListViewSearchGames extends Component {
@@ -35,7 +35,7 @@ class ListViewSearchGames extends Component {
     return (
         <SafeAreaView>
           <View>
-            <FlatList keyExtractor={(item,index)=> item.id} data={this.props.gamesList} renderItem={renderGridItems} numColumns={1}></FlatList>
+            <FlatList keyExtractor={(item,index)=> item.id} data={this.props.gamesList} renderItem={renderGridItems} numColumns={1} initialNumToRender={20}></FlatList>
           </View>
         </SafeAreaView>
           
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     flex:1,
     margin:15,
     height:200,
-    width:150,
+    width:"90%",
     backgroundColor:"#f95959",
     borderRadius:10,
     shadowColor: "white",
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   Image:{
-    width: 150,
+    width: "100%",
     height: 150,
   },
   text:{
